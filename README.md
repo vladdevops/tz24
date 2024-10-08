@@ -95,7 +95,7 @@ curl --location 'http://localhost/products' \
 curl --location --request PATCH 'http://localhost/products/1' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer  \
+--header 'Authorization: Bearer ' \
 --data '{
 "status_id": 2
 }'
