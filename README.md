@@ -106,3 +106,8 @@ curl --location 'http://localhost/products/dropdown' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer '
 ```
+## Pusher
+### Изменить `BROADCAST_DRIVER`
+```
+BROADCAST_DRIVER=reverb
+```
