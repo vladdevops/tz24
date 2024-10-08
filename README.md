@@ -111,3 +111,14 @@ curl --location 'http://localhost/products/dropdown' \
 ```
 BROADCAST_DRIVER=reverb
 ```
+### Собрать `Assets`
+```
+./vendor/bin/sail npm i
+./vendor/bin/sail npm run build
+```
+### Запустить pusher `Reverb`
+```
+./sail php artisan reverb:start
+```
+События выводятся в консоль http://localhost
+
