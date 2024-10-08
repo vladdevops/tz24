@@ -49,3 +49,60 @@ cp .env.example .env
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
 ```
+
+## Запросы
+### Получить токен
+```
+curl --location --request POST 'http://localhost/login?email=admin%40admin.com&password=password' \
+--header 'Accept: application/json'
+```
+### Добавить Product
+```
+curl --location 'http://localhost/products' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer ' \
+--data '{
+    "name": "name",
+    "category_id": 1,
+    "country_id": 1,
+    "status_id": 1,
+    "description": ""
+}'
+```
+### Редактировать Product
+```
+curl --location --request PATCH 'http://localhost/products/1' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer ' \
+--data '{
+    "name": "name 1",
+    "category_id": 2,
+    "country_id": 2,
+    "status_id": 1,
+    "description": "description"
+}'
+```
+### Список Product
+```
+curl --location 'http://localhost/products' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer '
+```
+### Обновление Product
+```
+curl --location --request PATCH 'http://localhost/products/1' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer  \
+--data '{
+"status_id": 2
+}'
+```
+### Список Product status = approved
+```
+curl --location 'http://localhost/products/dropdown' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer '
+```

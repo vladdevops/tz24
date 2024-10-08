@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('throttle:api:login')->post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('products', ProductController::class)->only([
+        'index', 'store', 'show', 'update', 'destroy',
+    ])->parameters([
+        'products' => 'product'
+    ])->whereNumber('product');
+
+    Route::get('products/dropdown', [ProductController::class, 'dropdown'])->name('products.dropdown');
 });
